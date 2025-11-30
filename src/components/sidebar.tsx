@@ -16,7 +16,6 @@ export default function Sidebar({ sidebar, setSidebar }: SidebarProps) {
     { id: "books", label: "Books", icon: BookOpen, path: "/books" },
     { id: "members", label: "Members", icon: Users, path: "/members" },
     { id: "borrow-return", label: "Borrow/Return", icon: ArrowLeftRight, path: "/borrow-return" },
-    { id: "fines", label: "Fines", icon: DollarSign, path: "/fines" },
   ];
 
   return (

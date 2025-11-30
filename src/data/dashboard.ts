@@ -1,4 +1,3 @@
-// src/data/dashboardData.ts
 import { Users, BookOpen, Clock, AlertCircle, DollarSign } from "lucide-react";
 
 export const summaryCards = [

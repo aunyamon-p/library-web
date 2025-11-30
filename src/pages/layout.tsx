@@ -8,6 +8,7 @@ import BorrowReturn from './borrowReturn';
 import Fines from './fines';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { users } from '../data/admins';
+import Modal from '../components/modal';
 
 interface LayoutProps {
   setLoggedIn: (value: boolean) => void;
@@ -17,8 +18,11 @@ interface LayoutProps {
 export default function Layout({ setLoggedIn, currentUser }: LayoutProps) {
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState('');
+  const [modal, setModal] = useState({ open: false, type: "" });
+
 
   const handleLogout = () => setLoggedIn(false);
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
@@ -35,14 +39,17 @@ export default function Layout({ setLoggedIn, currentUser }: LayoutProps) {
           <div className="px-6">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/books" element={<Books search={search} />} />
-              <Route path="/members" element={<Members search={search} />} />
-              <Route path="/borrow-return" element={<BorrowReturn search={search} />} />
-              <Route path="/fines" element={<Fines />} />
+              <Route path="/books" element={<Books search={search} setModal={setModal} />}/>
+              <Route path="/members" element={<Members search={search} setModal={setModal} />} />
+              <Route path="/borrow-return" element={<BorrowReturn search={search} setModal={setModal}/>} />
+              <Route path="/fines" element={<Fines />}/>
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
         </main>
+        {modal.open && (
+  <Modal modal={modal} setModal={setModal} />
+)}
       </div>
     </div>
   );
